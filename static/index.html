@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Bill Split</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="card topbar">
+        <div>
+          <h1 class="title">Simple Bill Split</h1>
+          <p class="subtitle">Admin login: <b>admin / admin123</b></p>
+        </div>
+        <div id="sessionArea"></div>
+      </header>
+
+      <!-- Login -->
+      <section id="authCard" class="card">
+        <h2>Login</h2>
+        <div class="row">
+          <input id="loginUser" class="input" placeholder="Username" />
+          <input
+            id="loginPass"
+            type="password"
+            class="input"
+            placeholder="Password"
+          />
+          <button id="loginBtn" class="btn">Login</button>
+        </div>
+      </section>
+
+      <!-- Admin Panel -->
+      <section id="adminPanel" class="card hidden">
+        <h2>Admin Panel</h2>
+        <div class="row">
+          <input id="newUser" class="input" placeholder="New Username" />
+          <input
+            id="newPass"
+            type="password"
+            class="input"
+            placeholder="New Password"
+          />
+          <button id="addUserBtn" class="btn">Add User</button>
+        </div>
+        <div class="user-section">
+          <p class="label">Existing Users</p>
+          <div id="usersList" class="user-list"></div>
+        </div>
+      </section>
+
+      <!-- User Panel -->
+      <section id="userPanel" class="card hidden">
+        <h2>Create Bill Split</h2>
+        <div class="row">
+          <input
+            id="billAmount"
+            type="number"
+            class="input"
+            placeholder="Amount"
+          />
+          <input id="billDate" type="date" class="input" readonly />
+        </div>
+        <textarea
+          id="billDesc"
+          class="input textarea"
+          placeholder="Description (optional)"
+        ></textarea>
+        <div class="user-section">
+          <p class="label">Select Participants</p>
+          <div id="participants" class="user-list"></div>
+        </div>
+        <label class="checkbox">
+          <input id="discount" type="checkbox" />
+          Apply 25% discount for me
+        </label>
+        <button id="createBillBtn" class="btn">Create Bill</button>
+      </section>
+
+      <!-- Bills List -->
+      <section id="billsCard" class="card hidden">
+        <h2>Bills</h2>
+        <div class="filter-row">
+          <button class="btn filter-btn" data-filter="all">All</button>
+          <button class="btn filter-btn" data-filter="unpaid-me">
+            Unpaid by Me
+          </button>
+          <button class="btn filter-btn" data-filter="my-bills">
+            My Bills
+          </button>
+          <button class="btn filter-btn" data-filter="unpaid-any">
+            Unpaid by Anyone
+          </button>
+        </div>
+        <div id="billsArea"></div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
