@@ -416,6 +416,30 @@ def admin_delete_bill():
         conn.close()
 
 
+@app.route("/health", methods=["GET"])
+def health_check():
+    try:
+        # Try to connect to the database
+        conn = sqlite3.connect(DB_PATH)
+        conn.execute("SELECT 1")
+        conn.close()
+        return jsonify(
+            {
+                "status": "ok",
+                "database": "connected",
+                "timestamp": datetime.utcnow().isoformat() + "Z",
+            }
+        ), 200
+    except Exception as e:
+        return jsonify(
+            {
+                "status": "error",
+                "database": str(e),
+                "timestamp": datetime.utcnow().isoformat() + "Z",
+            }
+        ), 500
+
+
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
